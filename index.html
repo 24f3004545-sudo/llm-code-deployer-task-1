@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Flask App Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #1c1e21;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 2rem;
+        }
+        p, li {
+            line-height: 1.6;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 90%;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+        }
+        .instructions ol {
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+        .code-container {
+            margin-top: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .code-header {
+            background-color: #f7f7f7;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-weight: bold;
+            color: #555;
+        }
+        #copy-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        #copy-button:hover {
+            background-color: #0069d9;
+        }
+        #copy-button:active {
+            background-color: #0056b3;
+            transform: scale(0.98);
+        }
+        pre {
+            margin: 0;
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.95em;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+            font-size: 1em;
+        }
+        /* Basic Python Syntax Highlighting */
+        .language-python .token.keyword { color: #c678dd; }
+        .language-python .token.function { color: #61afef; }
+        .language-python .token.string { color: #98c379; }
+        .language-python .token.comment { color: #5c6370; font-style: italic; }
+        .language-python .token.class-name { color: #e5c07b; }
+        .language-python .token.decorator { color: #61afef; }
+        .language-python .token.operator { color: #56b6c2; }
+        .language-python .token.boolean { color: #d19a66; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Python Flask App</h1>
+        <p>This page provides the code for a simple Python Flask application. The app creates a single endpoint <code>/status</code> that returns 'OK'.</p>
+
+        <div class="instructions">
+            <h2>Setup Instructions</h2>
+            <ol>
+                <li>Ensure you have Python and pip installed on your system.</li>
+                <li>Install Flask via the terminal: <code>pip install Flask</code></li>
+                <li>Save the code below as a Python file (e.g., <code>app.py</code>).</li>
+                <li>Run the app from your terminal: <code>python app.py</code></li>
+                <li>In your browser, navigate to <code>http://127.0.0.1:5000/status</code> to see the result.</li>
+            </ol>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header">
+                <span>app.py</span>
+                <button id="copy-button">Copy Code</button>
+            </div>
+            <pre><code id="code-block" class="language-python"><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask
+
+app <span class="token operator">=</span> <span class="token class-name">Flask</span>(__name__)
+
+<span class="token decorator">@app.route</span>(<span class="token string">'/status'</span>)
+<span class="token keyword">def</span> <span class="token function">status</span>():
+    <span class="token keyword">return</span> <span class="token string">'OK'</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span>:
+    <span class="token comment"># Runs the app on a local development server.</span>
+    app.run(debug<span class="token operator">=</span><span class="token boolean">True</span>)</code></pre>
+        </div>
+    </div>
+    <script>
+        const copyButton = document.getElementById('copy-button');
+        const codeBlock = document.getElementById('code-block');
+
+        copyButton.addEventListener('click', () => {
+            // Use innerText to preserve line breaks and spacing from the <pre> tag
+            const codeToCopy = codeBlock.innerText;
+
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+                // Success feedback
+                copyButton.textContent = 'Copied!';
+                copyButton.style.backgroundColor = '#28a745';
+
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Code';
+                    copyButton.style.backgroundColor = '#007bff';
+                }, 2000);
+            }).catch(err => {
+                // Error feedback, also log to console
+                console.error('Failed to copy text: ', err);
+                copyButton.textContent = 'Failed!';
+                copyButton.style.backgroundColor = '#dc3545';
+
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Code';
+                    copyButton.style.backgroundColor = '#007bff';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
