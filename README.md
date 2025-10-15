@@ -1,7 +1,7 @@
 # llm-code-deployer-task-1
 
 ## Project Brief
-Create a simple Python Flask app with one endpoint at /status that returns 'OK'.
+Create a simple tic tac toe game
 
 ## Setup
 No setup required.
